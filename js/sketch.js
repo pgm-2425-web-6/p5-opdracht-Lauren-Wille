@@ -5,11 +5,11 @@ let bubblePopSound;
 
 function preload() {
   // Load sound effects
-  bubblePopSound = loadSound('bubble.mp3');
+  bubblePopSound = loadSound('sound/bubble.mp3');
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(400, 400);
 
   for (let i = 0; i < 20; i++) {
     bubbles.push(new Bubble(random(width), random(height, height + 200)));
