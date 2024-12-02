@@ -9,7 +9,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(windowWidth, windowHeight);
 
   for (let i = 0; i < 20; i++) {
     bubbles.push(new Bubble(random(width), random(height, height + 200)));
