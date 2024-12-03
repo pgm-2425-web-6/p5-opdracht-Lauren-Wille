@@ -2,6 +2,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 body {
@@ -38,9 +39,7 @@ p {
 }
 
 .menu-lines {
-  & span 
-  {
-
+  & span {
   }
 }
 
@@ -55,38 +54,50 @@ p {
   top: 1rem;
 }
 
-.fish 
-{
+.all-fish {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  justify-content: center;
-  position: relative;
 
-  & .fish-image
-  {
-    width: 10rem;
-  }
-
-  & .info-container {
+  & .fish {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
     position: relative;
-    display: inline-block; /* Keeps the icon and info grouped */
+    width: min-content;
 
-    & .info {
-      display: none; /* Initially hidden */
-      position: absolute;
-      top: 25px; /* Adjust as needed to position the text below the icon */
-      left: 0;
-      background-color: #fff; /* White background for readability */
-      border: 1px solid #ccc; /* Optional border */
-      border-radius: 5px; /* Rounded corners */
-      padding: 10px;
-      width: 200px; /* Adjust width */
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-      z-index: 10; /* Brings the info box to the top layer */
+    & .fish-image {
+      width: 10rem;
     }
 
-    
+    & .info-container {
+      position: relative;
+      display: inline-block; /* Keeps the icon and info grouped */
+
+      & .info {
+        display: none; /* Initially hidden */
+        position: absolute;
+        top: 25px; /* Adjust as needed to position the text below the icon */
+        right: 0;
+        background-color: #8fb5d6; /* White background for readability */
+        border: 1px solid #ccc; /* Optional border */
+        border-radius: 5px; /* Rounded corners */
+        padding: 10px;
+        width: 200px; /* Adjust width */
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        z-index: 10; /* Brings the info box to the top layer */
+      }
+    }
   }
 }
 
+.all-fish .fish .info-icon:hover + .info {
+  display: block; /* Show the info when hovering over the container */
+}
+
+.button 
+{
+  display: flex;
+  justify-content: center;
+}
