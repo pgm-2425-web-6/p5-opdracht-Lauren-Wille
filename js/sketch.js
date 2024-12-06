@@ -1,11 +1,21 @@
 let bubbles = [];
 let fishes = [];
-let seaweed = [];
 let bubblePopSound;
+let fishImages = {};
+let backgrounds = {};
+let bgImage;
+let bgIndex = 0;
 
 function preload() {
-  // Load sound effects
-  bubblePopSound = loadSound('sound/bubble.mp3');
+  bubblePopSound = loadSound("sound/bubble.mp3");
+
+  backgrounds["bgImage1"] = loadImage("../images/background1.png");
+  backgrounds["bgImage2"] = loadImage("../images/background2.png");
+  backgrounds["bgImage3"] = loadImage("../images/background3.png");
+
+  fishImages["glowTetra"] = loadImage("images/fish1-colour.png");
+  fishImages["goldFish"] = loadImage("images/fish2-colour.png");
+  fishImages["cichlid"] = loadImage("images/fish3-colour.png");
 }
 
 function setup() {
@@ -15,22 +25,22 @@ function setup() {
     bubbles.push(new Bubble(random(width), random(height, height + 200)));
   }
 
-  for (let i = 0; i < 5; i++) {
-    fishes.push(new Fish(random(width), random(height)));
-  }
+  let button = select("button");
 
-  for (let i = 0; i < 10; i++) {
-    seaweed.push(new Seaweed(random(width), height));
-  }
+  button.mousePressed(() => {
+    let keys = Object.keys(backgrounds);
+    bgIndex = (bgIndex + 1) % keys.length;
+    bgImage = backgrounds[keys[bgIndex]];
+  });
 }
 
 function draw() {
-  background(30, 144, 255); // Underwater blue
+  if (bgImage) {
+    background(bgImage);
+  } else {
+    background(backgrounds["bgImage1"]);
+  }
 
-  // Draw seaweed
-  for (let s of seaweed) s.display();
-
-  // Draw bubbles
   for (let b of bubbles) {
     b.move();
     b.display();
@@ -51,13 +61,13 @@ class Bubble {
 
   move() {
     this.y -= 2;
-    if (this.y < -this.radius) this.y = height + this.radius; // Reset bubble
+    if (this.y < -this.radius) this.y = height + this.radius; 
   }
 
   display() {
+    fill(255, 255, 255); 
     noStroke();
-    fill(255, 255, 255, 150);
-    ellipse(this.x, this.y, this.radius * 2);
+    ellipse(this.x, this.y, this.radius * 2, this.radius * 2); 
   }
 
   isClicked() {
@@ -66,67 +76,78 @@ class Bubble {
 }
 
 class Fish {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
-    this.size = random(30, 70);
-    this.color = color(random(100, 255), random(100, 255), random(100, 255));
-    this.angle = random(TWO_PI);
-    this.speed = random(1, 3);
+  constructor(x, y, img) {
+    this.x = x; 
+    this.y = y; 
+    this.size = random(250, 300); 
+    this.img = img;
+    this.angle = random(TWO_PI); 
+    this.speed = random(1, 3); 
   }
 
   move() {
-    this.angle += random(-0.1, 0.1); // Wobble
     this.x += cos(this.angle) * this.speed;
-    this.y += sin(this.angle) * this.speed;
+    this.y += sin(this.angle) * this.speed; 
 
-    // Wrap around screen edges
-    if (this.x > width) this.x = 0;
-    if (this.x < 0) this.x = width;
-    if (this.y > height) this.y = 0;
-    if (this.y < 0) this.y = height;
+    if (this.x + this.size / 2 >= width) {
+      this.x = width - this.size / 2;
+      this.angle = PI - this.angle;
+    } else if (this.x - this.size / 2 <= 0) {
+      this.x = this.size / 2;
+      this.angle = PI - this.angle;
+    }
+
+    if (this.y + this.size / 2 >= height) {
+      this.y = height - this.size / 2;
+      this.angle = -this.angle;
+    } else if (this.y - this.size / 2 <= 0) {
+      this.y = this.size / 2;
+      this.angle = -this.angle;
+    }
   }
 
   display() {
-    fill(this.color);
-    noStroke();
-    triangle(
-      this.x, this.y,
-      this.x - this.size, this.y - this.size / 2,
-      this.x - this.size, this.y + this.size / 2
-    );
+    if (this.img) {
+      push();
+      imageMode(CENTER);
+
+      let aspectRatio = this.img.width / this.img.height;
+      let displayWidth = this.size; 
+      let displayHeight = this.size / aspectRatio;
+
+      let direction = cos(this.angle) > 0 ? -1 : 1;
+
+      if (direction === -1) {
+        scale(-1, 1);
+        image(this.img, -this.x, this.y, displayWidth, displayHeight);
+      } else {
+        image(this.img, this.x, this.y, displayWidth, displayHeight);
+      }
+
+      pop();
+    }
   }
 }
 
-class Seaweed {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
-    this.offset = random(0, TWO_PI);
+function addFish(type) {
+  if (type in fishImages) {
+    let img = fishImages[type];
+    fishes.push(new Fish(random(100, 1000), random(100, 1000), img));
   }
+}
 
-  display() {
-    fill(34, 139, 34);
-    beginShape();
-    for (let i = 0; i < 10; i++) {
-      let angle = this.offset + i * 0.5;
-      let x = this.x + sin(angle) * 10;
-      let y = this.y - i * 20;
-      vertex(x, y);
-    }
-    endShape();
-  }
+function removeFish(type) {
+  fishes = fishes.filter(fish => fish.img !== fishImages[type]);
 }
 
 function mousePressed() {
-  for (let b of bubbles) {
-    if (b.isClicked()) {
+  for (let i = bubbles.length - 1; i >= 0; i--) {
+    if (bubbles[i].isClicked()) {
       bubblePopSound.play();
-      bubbles.splice(bubbles.indexOf(b), 1);
+      bubbles.splice(i, 1);
       break;
     }
   }
-
 }
 
 function windowResized() {

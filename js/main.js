@@ -1,16 +1,9 @@
 let currentIndex = 0;
 
-function changeBackground() {
-  const images = [1, 2, 3];
+  const menu = document.querySelector('.menu');
+  const menuLines = document.querySelector('.menu-lines');
 
-  const body = document.body;
-  const background = document.getElementById('background');
-
-  background.style.backgroundImage = `url('../images/background${images[currentIndex]}.png')`;
-
-  currentIndex = (currentIndex + 1) % images.length;
-}
-
-document
-  .getElementById("changeBackground")
-  .addEventListener("click", changeBackground);
+  menuLines.addEventListener('click', () => {
+    menu.classList.toggle('active'); 
+    menuLines.classList.toggle('active');
+  });

@@ -3,13 +3,13 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-}
-
-body {
+  font-family: sans-serif;
 }
 
 canvas {
   display: block;
+  width: 100svw;
+  height: 100svh;
 }
 
 h1 {
@@ -18,29 +18,6 @@ h1 {
 
 p {
   font-weight: 400;
-}
-
-.changeBackground {
-  z-index: 1;
-}
-
-.background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  z-index: -1;
-  background-image: url("../images/background1.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.menu-lines {
-  & span {
-  }
 }
 
 .menu {
@@ -73,31 +50,81 @@ p {
 
     & .info-container {
       position: relative;
-      display: inline-block; /* Keeps the icon and info grouped */
+      display: inline-block;
 
       & .info {
-        display: none; /* Initially hidden */
+        display: none;
         position: absolute;
-        top: 25px; /* Adjust as needed to position the text below the icon */
+        top: 25px;
         right: 0;
-        background-color: #8fb5d6; /* White background for readability */
-        border: 1px solid #ccc; /* Optional border */
-        border-radius: 5px; /* Rounded corners */
+        background-color: #8fb5d6;
+        border: 1px solid #ccc;
+        border-radius: 5px;
         padding: 10px;
         width: 200px; /* Adjust width */
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-        z-index: 10; /* Brings the info box to the top layer */
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 10;
       }
     }
   }
 }
 
 .all-fish .fish .info-icon:hover + .info {
-  display: block; /* Show the info when hovering over the container */
+  display: block;
 }
 
-.button 
-{
+.button {
   display: flex;
   justify-content: center;
+}
+
+/* Menu Lines (Hamburger Menu) */
+.menu-lines {
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.menu-lines span {
+  width: 3rem;
+  height: 0.3rem;
+  background-color: rgb(255, 255, 255);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Transform to X */
+.menu-lines.active span:nth-child(1) {
+  transform: rotate(45deg) translate(4px, 3px);
+}
+
+.menu-lines.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-lines.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(8px, -8px);
+}
+
+/* Menu Visibility */
+.menu {
+  display: none;
+  position: absolute;
+  top: 4rem;
+  right: 1rem;
+  background: white;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.menu.active {
+  display: block;
 }

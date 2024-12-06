@@ -14,9 +14,8 @@
     <title>Build your aquarium!</title>
   </head>
   <body>
-    <div class="background" id="background"></div>
-
     <div class="menu-lines">
+      <span></span>
       <span></span>
       <span></span>
     </div>
@@ -36,12 +35,12 @@
 
       <div class="all-fish">
         <div class="fish">
-          <button class="addfish">+</button>
-          <button class="removefish">-</button>
-          <img class="fish-image" src="../images/fish1-colour.png" alt="" />
+          <button class="addfish" onclick="addFish('glowTetra')">+</button>
+          <button class="removefish" onclick="removeFish('glowTetra')">-</button>
+          <img class="fish-image" src="images/fish1-colour.png" alt="" />
           <p>glow tetra</p>
           <div class="info-container">
-            <img class="info-icon" src="../images/info.png" alt="Info Icon" />
+            <img class="info-icon" src="images/info.png" alt="Info Icon" />
             <p class="info">
               Glow tetra fish (Hemigrammus erythrozonus or GloFish Tetra) are
               small, vibrant freshwater fish originally from South America,
@@ -53,12 +52,12 @@
         </div>
 
         <div class="fish">
-          <button class="addfish">+</button>
-          <button class="removefish">-</button>
-          <img class="fish-image" src="../images/fish2-colour.png" alt="" />
+          <button class="addfish" onclick="addFish('goldFish')">+</button>
+          <button class="removefish" onclick="removeFish('goldFish')">-</button>
+          <img class="fish-image" src="images/fish2-colour.png" alt="" />
           <p>gold fish</p>
           <div class="info-container">
-            <img class="info-icon" src="../images/info.png" alt="Info Icon" />
+            <img class="info-icon" src="images/info.png" alt="Info Icon" />
             <p class="info">
               Goldfish (Carassius auratus), one of the most popular aquarium
               pets, are hardy freshwater fish with bright orange, gold, or white
@@ -69,12 +68,12 @@
         </div>
 
         <div class="fish">
-          <button class="addfish">+</button>
-          <button class="removefish">-</button>
-          <img class="fish-image" src="../images/fish3-colour.png" alt="" />
+          <button class="addfish" onclick="addFish('cichlid')">+</button>
+          <button class="removefish" onclick="removeFish('cichlid')">-</button>
+          <img class="fish-image" src="images/fish3-colour.png" alt="" />
           <p>cichlid</p>
           <div class="info-container">
-            <img class="info-icon" src="../images/info.png" alt="Info Icon" />
+            <img class="info-icon" src="images/info.png" alt="Info Icon" />
             <p class="info">
               Cichlids, a diverse family of freshwater fish, include popular
               species like angelfish and Oscars, known for their striking
@@ -87,5 +86,6 @@
     </div>
 
     <script src="js/main.js"></script>
+    <script src="js/sketch.js"></script>
   </body>
 </html>
