@@ -36,9 +36,13 @@ function setup() {
 
 function draw() {
   if (bgImage) {
-    background(bgImage);
+    background(255);
+    imageMode(CORNER);
+    image(bgImage, 0, 0, width, height);
   } else {
-    background(backgrounds["bgImage1"]);
+    background(225);
+    imageMode(CORNER);
+    image(backgrounds["bgImage1"], 0, 0, width, height);
   }
 
   for (let b of bubbles) {
@@ -61,13 +65,13 @@ class Bubble {
 
   move() {
     this.y -= 2;
-    if (this.y < -this.radius) this.y = height + this.radius; 
+    if (this.y < -this.radius) this.y = height + this.radius;
   }
 
   display() {
-    fill(255, 255, 255); 
+    fill(255, 255, 255);
     noStroke();
-    ellipse(this.x, this.y, this.radius * 2, this.radius * 2); 
+    ellipse(this.x, this.y, this.radius * 2, this.radius * 2);
   }
 
   isClicked() {
@@ -77,17 +81,18 @@ class Bubble {
 
 class Fish {
   constructor(x, y, img) {
-    this.x = x; 
-    this.y = y; 
-    this.size = random(250, 300); 
+    this.x = x;
+    this.y = y;
+    this.size = random(250, 300);
     this.img = img;
-    this.angle = random(TWO_PI); 
-    this.speed = random(1, 3); 
+    this.angle = random(TWO_PI);
+    this.speed = random(1, 3);
+    this.isStopped = false;
   }
 
   move() {
     this.x += cos(this.angle) * this.speed;
-    this.y += sin(this.angle) * this.speed; 
+    this.y += sin(this.angle) * this.speed;
 
     if (this.x + this.size / 2 >= width) {
       this.x = width - this.size / 2;
@@ -112,7 +117,7 @@ class Fish {
       imageMode(CENTER);
 
       let aspectRatio = this.img.width / this.img.height;
-      let displayWidth = this.size; 
+      let displayWidth = this.size;
       let displayHeight = this.size / aspectRatio;
 
       let direction = cos(this.angle) > 0 ? -1 : 1;
@@ -127,6 +132,27 @@ class Fish {
       pop();
     }
   }
+
+  isClicked() {
+    let halfWidth = this.size / 2;
+    let halfHeight = this.size / 2;
+
+    return (
+      mouseX > this.x - halfWidth &&
+      mouseX < this.x + halfWidth &&
+      mouseY > this.y - halfHeight &&
+      mouseY < this.y + halfHeight
+    );
+  }
+
+  toggleMovement() {
+    this.isStopped = !this.isStopped;
+    if (!this.isStopped) {
+      this.speed = random(1, 3);
+    } else {
+      this.speed = 0;
+    }
+  }
 }
 
 function addFish(type) {
@@ -137,10 +163,17 @@ function addFish(type) {
 }
 
 function removeFish(type) {
-  fishes = fishes.filter(fish => fish.img !== fishImages[type]);
+  fishes = fishes.filter((fish) => fish.img !== fishImages[type]);
 }
 
 function mousePressed() {
+  for (let fish of fishes) {
+    if (fish.isClicked()) {
+      fish.toggleMovement();
+      break;
+    }
+  }
+
   for (let i = bubbles.length - 1; i >= 0; i--) {
     if (bubbles[i].isClicked()) {
       bubblePopSound.play();
