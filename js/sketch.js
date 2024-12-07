@@ -83,7 +83,7 @@ class Fish {
   constructor(x, y, img) {
     this.x = x;
     this.y = y;
-    this.size = random(250, 300);
+    this.size = random(150, 300);
     this.img = img;
     this.angle = random(TWO_PI);
     this.speed = random(1, 3);
