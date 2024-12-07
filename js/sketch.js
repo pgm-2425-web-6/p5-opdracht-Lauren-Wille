@@ -70,7 +70,7 @@ class Bubble {
   }
 
   move() {
-    this.y -= 2;
+    this.y -= 0.8;
     if (this.y < -this.radius) this.y = height + this.radius;
   }
 
