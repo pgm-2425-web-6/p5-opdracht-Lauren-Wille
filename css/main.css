@@ -32,14 +32,16 @@ p {
 }
 
 .all-fish {
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1rem;
 
   & .fish {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 3rem;
     justify-content: center;
     position: relative;
     width: min-content;
@@ -76,6 +78,38 @@ p {
 .button {
   display: flex;
   justify-content: center;
+}
+
+/* Basic Button Styling */
+button {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: #3498db; /* Blue background */
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover Effect */
+button:hover {
+  background-color: #2980b9; /* Darker blue on hover */
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Active/Pressed State */
+button:active {
+  background-color: #1f618d; /* Even darker blue when pressed */
+  transform: scale(0.95); /* Slight shrink on press */
+}
+
+/* Focus State for Accessibility */
+button:focus {
+  outline: 2px solid #2980b9; /* Blue outline on focus */
+  outline-offset: 2px;
 }
 
 /* Menu Lines (Hamburger Menu) */

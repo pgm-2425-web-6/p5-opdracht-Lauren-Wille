@@ -1,3 +1,8 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/22-pQvBd)
+# Welkom bij jouw aquarium!
 
-Lauren Wille
+## Wat kan je doen?
+Open het menu en voeg visjes toe. Als je ze hebt toegevoegd, kan je ze klikken zodat ze stoppen met zwemmen. Daarnaast kan je ook de bubbeltjes 'poppen' door ze te klikken.
+
+Kies dan ook welke achtergrond je wil tonen.
+
+Voel je je leergierig, hover over de info knop en lees meer over de type vis.
