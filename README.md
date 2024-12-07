@@ -1,11 +1,13 @@
-# Welkom bij jouw aquarium!
+# Welcome to your aquarium!
 
-## Wat kan je doen?
-Open het menu en voeg visjes toe. Als je ze hebt toegevoegd, kan je ze klikken zodat ze stoppen met zwemmen. Daarnaast kan je ook de bubbeltjes 'poppen' door ze te klikken.
+## What can you do?
+Open the menu and add some fish. Once you've added them, you can click on them to make them stop swimming. You can also "pop" the bubbles by clicking on them.
 
-Kies dan ook welke achtergrond je wil tonen.
+You can choose which background you'd like to display as well.
 
-Voel je je leergierig, hover over de info knop en lees meer over de type vis.
+Feeling curious? Hover over the info button to learn more about the different types of fish.
+
+Ready and want to show it off to your friends? Save your aquarium as a photo by clicking "save screenshot" in the menu.
 
 ## Links
 - [Repository](https://github.com/pgm-2425-web-6/p5-opdracht-Lauren-Wille)
