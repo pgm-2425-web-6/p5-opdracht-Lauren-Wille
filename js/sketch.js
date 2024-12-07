@@ -25,13 +25,19 @@ function setup() {
     bubbles.push(new Bubble(random(width), random(height, height + 200)));
   }
 
-  let button = select("button");
+  let changeBackground = select(".changeBackground");
 
-  button.mousePressed(() => {
+  changeBackground.mousePressed(() => {
     let keys = Object.keys(backgrounds);
     bgIndex = (bgIndex + 1) % keys.length;
     bgImage = backgrounds[keys[bgIndex]];
   });
+
+  let saveScreenshot = select(".saveScreenshot");
+
+  saveScreenshot.mousePressed(() => {
+    save('myAquarium.jpg'); 
+  })
 }
 
 function draw() {

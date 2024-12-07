@@ -6,3 +6,7 @@ Open het menu en voeg visjes toe. Als je ze hebt toegevoegd, kan je ze klikken z
 Kies dan ook welke achtergrond je wil tonen.
 
 Voel je je leergierig, hover over de info knop en lees meer over de type vis.
+
+## Links
+- [Repository](https://github.com/pgm-2425-web-6/p5-opdracht-Lauren-Wille)
+- [Page](https://pgm-2425-web-6.github.io/p5-opdracht-Lauren-Wille/) 
