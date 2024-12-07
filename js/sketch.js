@@ -9,9 +9,9 @@ let bgIndex = 0;
 function preload() {
   bubblePopSound = loadSound("sound/bubble.mp3");
 
-  backgrounds["bgImage1"] = loadImage("../images/background1.png");
-  backgrounds["bgImage2"] = loadImage("../images/background2.png");
-  backgrounds["bgImage3"] = loadImage("../images/background3.png");
+  backgrounds["bgImage1"] = loadImage("/images/background1.png");
+  backgrounds["bgImage2"] = loadImage("/images/background2.png");
+  backgrounds["bgImage3"] = loadImage("/images/background3.png");
 
   fishImages["glowTetra"] = loadImage("images/fish1-colour.png");
   fishImages["goldFish"] = loadImage("images/fish2-colour.png");
