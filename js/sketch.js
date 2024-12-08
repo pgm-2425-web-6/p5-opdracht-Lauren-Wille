@@ -36,8 +36,8 @@ function setup() {
   let saveScreenshot = select(".saveScreenshot");
 
   saveScreenshot.mousePressed(() => {
-    save('myAquarium.jpg'); 
-  })
+    save("myAquarium.jpg");
+  });
 }
 
 function draw() {
@@ -169,7 +169,14 @@ function addFish(type) {
 }
 
 function removeFish(type) {
-  fishes = fishes.filter((fish) => fish.img !== fishImages[type]);
+  if (fishes.length >= 1) {
+    for (let i = fishes.length - 1; i >= 0; i--) {
+      if (fishes[i].img === fishImages[type]) {
+        fishes.splice(i, 1);
+        break;
+      }
+    }
+  }
 }
 
 function mousePressed() {
